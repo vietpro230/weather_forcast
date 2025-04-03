@@ -188,7 +188,9 @@ with gr.Blocks(css=load_css()) as demo:  # Ensure correct relative path to CSS f
     demo.load(fn=get_chart_data, outputs=[weather_chart_output])
     demo.load(fn=chart_line, outputs=[chart_line_output])
 
-demo.launch(debug=True, share=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 7860))  # Render provides the PORT
+    demo.launch(server_name="0.0.0.0", server_port=port, share=True)  # Must bind to 0.0.0.0
 
 
 # from flask import Flask, render_template
